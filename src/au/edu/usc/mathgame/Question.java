@@ -60,4 +60,20 @@ public class Question {
             return false;
         }
     }
+
+    public int getVal1() {
+        return val1;
+    }
+
+    public int getVal2() {
+        return val2;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
 }
