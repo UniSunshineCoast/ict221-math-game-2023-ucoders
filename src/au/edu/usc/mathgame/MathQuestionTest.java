@@ -10,7 +10,7 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class QuestionTest {
+public class MathQuestionTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -30,25 +30,25 @@ public class QuestionTest {
 
     @Test
     public void testConstructor() {
-        Question q = new Question(3, 5, "+");
+        MathQuestion q = new MathQuestion(3, 5, "+");
         assertEquals(3, q.getVal1());
         assertEquals(5, q.getVal2());
         assertEquals("+", q.getOperator());
         assertEquals(8, q.getAnswer());
 
-        q = new Question(10, 2, "-");
+        q = new MathQuestion(10, 2, "-");
         assertEquals(10, q.getVal1());
         assertEquals(2, q.getVal2());
         assertEquals("-", q.getOperator());
         assertEquals(8, q.getAnswer());
 
-        q = new Question(4, 6, "*");
+        q = new MathQuestion(4, 6, "*");
         assertEquals(4, q.getVal1());
         assertEquals(6, q.getVal2());
         assertEquals("*", q.getOperator());
         assertEquals(24, q.getAnswer());
 
-        q = new Question(20, 5, "/");
+        q = new MathQuestion(20, 5, "/");
         assertEquals(20, q.getVal1());
         assertEquals(5, q.getVal2());
         assertEquals("/", q.getOperator());
@@ -58,7 +58,7 @@ public class QuestionTest {
     @Test
     public void testRandomConstructor() {
         Random rand = new Random();
-        Question q = new Question(rand);
+        MathQuestion q = new MathQuestion(rand);
 
         int expectedAnswer;
         if (q.getOperator().equals("+")) {
@@ -76,22 +76,22 @@ public class QuestionTest {
 
     @Test
     public void testShowQuestion() {
-        Question q = new Question(3, 5, "+");
+        MathQuestion q = new MathQuestion(3, 5, "+");
         q.showQuestion();
         assertEquals("What is  3 +  5? ", outContent.toString());
         outContent.reset();
 
-        q = new Question(10, 2, "-");
+        q = new MathQuestion(10, 2, "-");
         q.showQuestion();
         assertEquals("What is 10 -  2? ", outContent.toString());
         outContent.reset();
 
-        q = new Question(4, 6, "*");
+        q = new MathQuestion(4, 6, "*");
         q.showQuestion();
         assertEquals("What is  4 *  6? ", outContent.toString());
         outContent.reset();
 
-        q = new Question(20, 5, "/");
+        q = new MathQuestion(20, 5, "/");
         q.showQuestion();
         assertEquals("What is 20 /  5? ", outContent.toString());
         outContent.reset();
@@ -99,19 +99,19 @@ public class QuestionTest {
 
     @Test
     public void testCheckAnswer() {
-        Question q = new Question(3, 5, "+");
+        MathQuestion q = new MathQuestion(3, 5, "+");
         assertEquals(true, q.checkAnswer(8));
         assertEquals(false, q.checkAnswer(7));
 
-        q = new Question(10, 2, "-");
+        q = new MathQuestion(10, 2, "-");
         assertEquals(true, q.checkAnswer(8));
         assertEquals(false, q.checkAnswer(9));
 
-        q = new Question(4, 6, "*");
+        q = new MathQuestion(4, 6, "*");
         assertEquals(true, q.checkAnswer(24));
         assertEquals(false, q.checkAnswer(23));
 
-        q = new Question(20, 5, "/");
+        q = new MathQuestion(20, 5, "/");
         assertEquals(true, q.checkAnswer(4));
         assertEquals(false, q.checkAnswer(3));
     }

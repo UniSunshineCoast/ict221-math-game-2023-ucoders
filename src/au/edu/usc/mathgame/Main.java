@@ -1,5 +1,6 @@
 package au.edu.usc.mathgame;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,19 +21,30 @@ public class Main {
     public void playGame() {
         Random rand = new Random();
         Scanner input = new Scanner(System.in);
+        ArrayList<Question> questions = new ArrayList<Question>();
         int score = 0;
 
+        // Generate 10 random questions and store them in a list
+        for (int i = 0; i < 3; i++) {
+            MathQuestion q = new MathQuestion(rand);
+            questions.add(q);
+        }
 
-        // now ask some random addition questions.
-        for (int i = 0; i < 10; i++) {
+        JokeQuestion jq = new JokeQuestion("How many Polacks does it take to change a light bulb?", 3);
+        questions.add(jq);
+
+        // now ask each question from the list.
+        for (int i = 0; i < questions.size(); i++) {
             System.out.printf("Your current score is %2d\n", score);
-            Question q = new Question(rand);
+            Question q = questions.get(i);
             q.showQuestion();
             int response = input.nextInt();
 
             boolean good = q.checkAnswer(response);
             if (good) {
                 score++;
+            } else {
+                questions.add(q);
             }
         }
 
