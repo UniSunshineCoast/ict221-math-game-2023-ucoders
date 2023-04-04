@@ -25,7 +25,7 @@ public class Main {
         int score = 0;
 
         // Generate 10 random questions and store them in a list
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 9; i++) {
             MathQuestion q = new MathQuestion(rand);
             questions.add(q);
         }
